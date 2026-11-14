@@ -6,6 +6,7 @@ import { AssemblyChallenge } from './assembly.js';
 import { EngineAudio } from './engine-audio.js';
 import { workshopAvailability } from './workshop-rules.js';
 import { bindDrivingKeyboard } from './driving-input.js';
+import { bindProjectGallery } from './gallery.js';
 import { enterDriverView } from './cockpit-controls.js';
 
 const $ = id => document.getElementById(id);
@@ -55,6 +56,8 @@ function availability() {
 function releasePedals() {
   keyboard?.release(); powertrain.setThrottle(0); powertrain.setBrake(0);
 }
+
+const projectGallery=bindProjectGallery({onOpen:releasePedals});
 
 function syncStages() {
   const value = view?.targetExplode || 0;
@@ -420,7 +423,7 @@ function frame(now) {
   uiClock += dt; if (uiClock > .11) { uiClock = 0; refreshUI(); }
 }
 
-keyboard = bindDrivingKeyboard({ target: window, document, enabled: () => ready,
+keyboard = bindDrivingKeyboard({ target: window, document, enabled: () => ready && !projectGallery.open,
   onPedals({ throttle, brake }) {
     const allowed = availability();
     powertrain.setThrottle(allowed.throttle ? throttle : 0);

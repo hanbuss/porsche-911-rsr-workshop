@@ -236,7 +236,7 @@ export class CarScene {
       speedKmh:Math.round(Math.abs(state.speedKmh))};
     const ctx = this.dashboardCanvas.getContext('2d'), w = this.dashboardCanvas.width;
     ctx.fillStyle = '#10161b'; ctx.fillRect(0, 0, w, 512);
-    ctx.fillStyle = '#dce4e7'; ctx.font = 'bold 35px Arial'; ctx.fillText('PORSCHE  /  DIGITAL COCKPIT', 32, 53);
+    ctx.fillStyle = '#dce4e7'; ctx.font = 'bold 35px Arial'; ctx.fillText('WORKSHOP  /  DIGITAL COCKPIT', 32, 53);
     ctx.fillStyle = state.phase === 'running' ? '#80c9a6' : '#757b80';
     ctx.font = '20px Arial'; ctx.fillText(state.phase === 'running' ? 'ENGINE ON' : 'STANDBY', 822, 49);
     for (let i = 0; i < 48; i++) {

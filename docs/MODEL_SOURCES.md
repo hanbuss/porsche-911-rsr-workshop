@@ -5,7 +5,7 @@
 - Download: https://library.ldraw.org/media/omr_models/1089/42096-1.mpd?v=1758937638
 - Author: Philippe Hurbain [Philo].
 - Model header license: Redistributable under CCAL version 2.0; see CAreadme.txt.
-- Current official LDraw part files may carry CC BY 4.0; retain attribution and library license alongside derivative assets.
+- Referenced part definitions use CC BY 2.0, CC BY 4.0 or dual-license headers; retain attribution and the applicable library license alongside derivative assets. The exact scope and all 42 author strings are recorded in [LDRAW_ATTRIBUTION.md](LDRAW_ATTRIBUTION.md).
 - OMR flags: missing parts = no; missing patterns = no; missing stickers = yes.
 - Original MPD input SHA-256: 6cf2873bdd73f7bb1db6b73da220bd48c9d7ba5db6891cd2811b567420e95793. Obtain the source from the OMR link above; this web repository contains the derived GLB rather than the complete authoring archive.
 - MPD bytes: 4,749,823. Embedded subfiles: 76. Type-1 references across definitions: 2,078.
@@ -17,8 +17,12 @@ The physical assembly is 42096 - porsche.ldr. Its origin is near the rear differ
 
 ## Construction parsing
 
-Treat assembly .ldr files as hierarchy. Treat .dat definitions as individual pieces even if they contain primitives/subparts. Retain direct polygon .ldr spring, ribbed hose, and flexible axle definitions as independent custom physical geometry. Low-quality ribbed hose definitions contain multiple generated segment references, which can inflate a naive leaf instance count. The runtime manifest contains 1,700 visible nodes and 1,657 physical assembly roots, including custom interior additions.
+Treat assembly .ldr files as hierarchy. Treat .dat definitions as individual pieces even if they contain primitives/subparts. Retain direct polygon .ldr spring, ribbed hose, and flexible axle definitions as independent custom physical geometry. Low-quality ribbed hose definitions contain multiple generated segment references, which can inflate a naive leaf instance count. The current public manifest contains 1,685 visible nodes and 1,657 physical assembly roots, including custom interior additions.
 
-## Decals
+## Public derivative and changes
 
-The OMR file explicitly lacks stickers. Any 911 labels, Porsche/Mobil lettering, red/gray strips or roof graphics added in Blender must be described as reconstruction from the supplied reference. The added orthographic reference confirms the red 911 number belongs on the lower large door panels 64682.dat / 64392.dat, not the upper 62531.dat. Red/gray stripes follow the molded bottom edge and continue on rear triangular panels 64680.dat / 64394.dat.
+The OMR file explicitly lacks stickers. An earlier web export added 15 reference-derived decal nodes, including brand and sponsor graphics, without a separately recorded license. The current public derivative removes all 15 of those nodes, their unused materials and texture data, and the old static instrument image. The original 1,657 physical roots, retained geometry and assembly transforms are unchanged. The dynamic instrument display now uses project-specific text.
+
+The public GLB contains no embedded images or texture objects. The separate leather height map is project-created. Seats, steering components, instruments, glazing, surface adjustments and browser interaction are project additions. Four screenshots in `public/gallery/` are rendered from this current public derivative.
+
+These removals reduce redistribution of the added graphics; they do not grant rights in vehicle designs, trademarks or the original reference images. Names identify the depicted model, not an endorsement. See [RIGHTS_REVIEW.md](RIGHTS_REVIEW.md) for the separate rights and the limits of this review. Older Git commits can still contain the previous export; this document describes the current branch and deployed site.

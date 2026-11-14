@@ -16,6 +16,7 @@ The project is a client-side Vite/Three.js application. It loads `public/assets/
 | `src/vehicle-lighting.js` | Headlamps, forward light projection, brake lamps, and indicators |
 | `src/driving-input.js` | Keyboard actions, release and focus handling |
 | `src/workshop-rules.js` | Availability of driving, access and disassembly operations |
+| `src/gallery.js` | Accessible project gallery; releases pedals and suspends driving shortcuts while open |
 
 ## Regression coverage
 
@@ -33,6 +34,8 @@ The rear hatch source fixture identifies the 24 original pieces of `42096 - roof
 
 The manifest uses metres, Y up and vehicle forward +Z. Driver-eye and hinge coordinates are model coordinates, not external location data. Part identifiers, material parameters and geometry are retained in the public build.
 
+The current public model contains 1,685 nodes, including 1,657 physical roots. Fifteen attached reference-derived decals and the old static instrument image were removed; retained physical geometry and transforms are unchanged. The dashboard is drawn at runtime. The four WebP gallery images are rendered from this version and shared by the README and the in-app gallery.
+
 ## Browser diagnostics
 
 `window.__RSR__` exposes read-only `snapshot()`, `part(id)` and `projectPart(id)` for interaction verification. It reports runtime state and geometry/material metadata only. It does not include credentials or source-machine paths.
@@ -40,3 +43,5 @@ The manifest uses metres, Y up and vehicle forward +Z. Driver-eye and hinge coor
 ## Static hosting
 
 `npm run build` emits `dist/`. The included Pages workflow tests and builds on pushes and pull requests, and deploys only the default branch. Relative asset URLs allow GitHub Pages repository paths. Local preview binds to the loopback interface.
+
+Only `three` and `vite` remain as declared packages. The scene uses the Meshoptimizer decoder bundled with Three.js; a separate offline optimizer package is not needed at runtime. Unused precompressed model and surface-map files were removed. Keep the model attribution, source licenses and `public/THIRD_PARTY_NOTICES.txt` with redistributed builds.

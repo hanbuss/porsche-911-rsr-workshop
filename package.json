@@ -13,10 +13,6 @@
     "three": "0.187.0"
   },
   "devDependencies": {
-    "@gltf-transform/core": "^4.3.0",
-    "@gltf-transform/extensions": "^4.3.0",
-    "@gltf-transform/functions": "^4.3.0",
-    "meshoptimizer": "^1.0.1",
     "vite": "7.3.8"
   }
 }

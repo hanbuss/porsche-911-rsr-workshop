@@ -4,8 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f1f2ed" />
-    <meta name="description" content="探索 Porsche 911 RSR 的每个部件。启动引擎、换挡、打开车身，或完成随机编号装配。" />
-    <title>911 RSR · Interactive Workshop</title>
+    <meta name="description" content="非官方 911 RSR 机械互动研究：探索 1,657 件独立部件，进入驾驶座舱，控制灯光，拆解并随机回装。" />
+    <meta property="og:title" content="RSR Workshop · 机械互动工坊" />
+    <meta property="og:description" content="从驾驶座到每一枚连接销。一个可驾驶、可拆装的非官方三维互动项目。" />
+    <meta property="og:image" content="https://hanbuss.github.io/porsche-911-rsr-workshop/gallery/exterior.webp" />
+    <meta property="og:url" content="https://hanbuss.github.io/porsche-911-rsr-workshop/" />
+    <title>RSR Workshop · 非官方机械互动工坊</title>
   </head>
   <body>
     <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -34,11 +38,11 @@
         <div class="brand" aria-label="RSR 工坊">
           <span class="brand-stripes" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="brand-name">RSR<span class="brand-divider">/</span>WORKSHOP</span>
-          <span class="edition">INTERACTIVE EDITION</span>
+          <span class="edition">UNOFFICIAL · INTERACTIVE STUDY</span>
         </div>
         <div class="topbar-right">
           <span class="system-status"><i class="status-dot" aria-hidden="true"></i><span id="engine-status" role="status">引擎未启动</span></span>
-          <span class="header-number">NO. 911</span>
+          <button class="gallery-open" data-open-gallery aria-haspopup="dialog" aria-controls="project-gallery">图集与说明 <span aria-hidden="true">↗</span></button>
         </div>
       </header>
 
@@ -46,8 +50,8 @@
         <section class="stage" aria-label="三维模型工作区">
           <div id="viewport"></div>
           <div class="stage-copy">
-            <p class="eyebrow">PORSCHE · MOTORSPORT</p>
-            <h1>911 <span>RSR</span><sup>®</sup></h1>
+            <p class="eyebrow">INDEPENDENT MECHANICAL STUDY</p>
+            <h1>911 <span>RSR</span></h1>
             <p class="model-caption">每一处构造，都值得探索。</p>
             <div class="model-specs">
               <span><strong id="part-count">—</strong> 个独立部件</span>
@@ -198,8 +202,30 @@
           <div class="console-footer"><span>BUILT TO BE TAKEN APART.</span><i aria-hidden="true"></i></div>
         </aside>
       </main>
-      <footer class="app-footer"><span>911 RSR / THE MECHANICAL COLLECTION</span><span>探索 · 驾驶 · 组装</span></footer>
+      <footer class="app-footer"><span>RSR WORKSHOP · 非官方互动研究</span><button data-open-gallery aria-haspopup="dialog" aria-controls="project-gallery">模型来源与权利说明 ↗</button></footer>
     </div>
+    <dialog id="project-gallery" class="project-gallery" aria-labelledby="gallery-title">
+      <div class="gallery-toolbar"><span>RSR / WORKSHOP</span><form method="dialog"><button class="gallery-close" autofocus aria-label="关闭图集">返回工坊 <span aria-hidden="true">×</span></button></form></div>
+      <div class="gallery-content">
+        <p class="gallery-kicker">LOOK CLOSER. TAKE IT APART.</p>
+        <h2 id="gallery-title">从驾驶座，<br>到每一枚连接销。</h2>
+        <p class="gallery-intro">1,657 件独立部件，一座可以亲手探索的机械工坊。启动六缸引擎、打开车身、逐级拆解，再按随机编号将它装回。</p>
+        <div class="gallery-facts"><span><strong>1,657</strong> 可拆装部件</span><span><strong>4</strong> 拆解阶段</span><span><strong>3D</strong> 驾驶第一视角</span></div>
+        <figure class="gallery-hero"><img src="./gallery/exterior.webp" width="1200" height="800" loading="lazy" decoding="async" alt="完整车型在浅色展台上的前侧视角，显示车身、轮组和独立机械部件"/><figcaption><span>01 / 整车</span>旋转、放大，查看每个部件如何相连。</figcaption></figure>
+        <div class="gallery-grid">
+          <figure><img src="./gallery/cockpit.webp" width="1200" height="800" loading="lazy" decoding="async" alt="驾驶员第一视角，可见方向盘、电子仪表与前挡风玻璃"/><figcaption><span>02 / 驾驶</span>在完整座舱内启动、换挡与加速。</figcaption></figure>
+          <figure><img src="./gallery/exploded.webp" width="1200" height="800" loading="lazy" decoding="async" alt="机械总成展开，车身外壳、车轮和底盘分组分离"/><figcaption><span>03 / 拆装</span>从车身到总成，再到每个独立零件。</figcaption></figure>
+          <figure><img src="./gallery/lighting.webp" width="1200" height="800" loading="lazy" decoding="async" alt="夜间展台的前灯投射出两束向前照亮地面的光线"/><figcaption><span>04 / 灯光</span>前灯、尾灯、制动灯与双闪独立控制。</figcaption></figure>
+        </div>
+        <div class="gallery-links"><form method="dialog"><button class="gallery-start">回到工坊，开始探索 <span aria-hidden="true">→</span></button></form><a href="https://github.com/hanbuss/porsche-911-rsr-workshop" target="_blank" rel="noopener noreferrer">查看 GitHub 项目 ↗</a></div>
+        <section class="gallery-credits" aria-labelledby="credits-title">
+          <h3 id="credits-title">独立项目与模型来源</h3>
+          <p>这是非官方互动研究项目，未获 LEGO Group、Porsche 或画面中其他品牌的赞助、认可或授权，与它们无隶属关系。名称用于识别所再现的车型与积木套装，商标归各权利人所有。</p>
+          <p>基础装配：<a href="https://library.ldraw.org/omr/sets/930" target="_blank" rel="noopener noreferrer">LDraw OMR 42096-1</a>，作者 Philippe Hurbain（Philo），源文件注明 CC BY 2.0；零件许可按各源文件声明适用。本项目增加内饰、玻璃、交互与动画。图集为本应用实际渲染。</p>
+          <p>公开版已移除后加的参考重绘贴花及旧仪表品牌图。车型名称、可识别车形与源几何仍存在独立权利问题；Creative Commons 许可不代表品牌方授权。<a href="https://github.com/hanbuss/porsche-911-rsr-workshop/blob/main/docs/MODEL_SOURCES.md" target="_blank" rel="noopener noreferrer">来源与变更</a> · <a href="https://github.com/hanbuss/porsche-911-rsr-workshop/blob/main/docs/LDRAW_ATTRIBUTION.md" target="_blank" rel="noopener noreferrer">全部模型作者</a> · <a href="https://github.com/hanbuss/porsche-911-rsr-workshop/blob/main/docs/RIGHTS_REVIEW.md" target="_blank" rel="noopener noreferrer">权利风险审查</a> · <a href="./THIRD_PARTY_NOTICES.txt" target="_blank" rel="noopener noreferrer">运行库许可</a></p>
+        </section>
+      </div>
+    </dialog>
     <noscript><div class="noscript">请开启 JavaScript，以加载三维模型和交互控制。</div></noscript>
     <script type="module" src="/src/main.js"></script>
   </body>
