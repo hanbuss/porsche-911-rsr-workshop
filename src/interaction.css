@@ -1,0 +1,57 @@
+.scene-labels { position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:3; }
+.part-number-badge { position:absolute; left:0; top:0; pointer-events:auto; min-width:31px; height:24px; padding:0 7px; border:1px solid #bab9b0; border-radius:5px; background:rgba(250,250,247,.94); color:#424847; font:600 11px/22px 'IBM Plex Mono',monospace; box-shadow:0 2px 7px #18202815; cursor:pointer; }
+.part-number-badge:hover,.part-number-badge.is-target { color:white; border-color:#ad2230; background:#bd2935; z-index:2; }
+.part-number-badge.is-target { box-shadow:0 0 0 5px #bd29351c,0 4px 14px #20252233; }
+.assembly-speed-field { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:12px 0 3px; font-size:11px; color:#606466; }
+.assembly-speed-field select { background:transparent; color:inherit; border:1px solid #d9d8d3; padding:5px 7px; border-radius:3px; font:inherit; max-width:170px; }
+.is-night .stage { background:#202329; }
+.is-night .stage-copy h1 { color:#f3f2ee; }
+.is-night .stage-copy .eyebrow,.is-night .stage-copy .model-caption,.is-night .stage-copy .model-specs { color:#c5cbc5; }
+.is-night #viewport { background:radial-gradient(ellipse at center,#292d35,#16191f); }
+.is-night .view-presets,.is-night .canvas-hint { color:#d6d6d2; }
+.is-night .part-number-badge { color:#e3e4e6; background:#272d36ed; border-color:#666b71; }
+.is-night .part-number-badge.is-target { background:#b82031; border-color:#e44d5e; color:white; }
+#viewport canvas { width:100%; height:100%; display:block; touch-action:none; }
+.has-error { padding:30px; }
+.has-error .primary-button { margin-top:18px; width:150px; }
+.challenge-panel { position:relative; }
+.challenge-panel::before { content:""; position:absolute; left:0; top:-10px; height:2px; width:var(--assembly-progress,0%); background:#b82031; transition:width .15s; }
+.shake { animation:tiny-shake .25s ease-in-out; }
+@keyframes tiny-shake { 25%,75% { transform:translateX(4px) } 50% { transform:translateX(-4px) } }
+@media (max-width:760px) { .part-number-badge { min-width:24px; height:22px; font-size:10px; padding:0 4px; } }
+.keyboard-guide { display:grid;grid-template-columns:1fr 1fr;gap:9px 6px;padding:14px 0;border-top:1px solid var(--line);font-size:11px;color:#61675f; }
+.keyboard-guide kbd { display:inline-block;padding:2px 5px;background:#e8eae3;border:1px solid #d8dccf;border-radius:3px;font:10px/1.4 monospace;color:#424b40;margin-right:2px; }
+.controls-lock-note { min-height:17px;margin:12px 0 0;font-size:11px;line-height:1.7;color:#ac453c; }
+.controls-lock-note:not([hidden]) { margin:15px 30px 0;padding:10px 12px;border-left:2px solid #c5aa84;background:#ede9df;color:#655646; }
+.console button:disabled,.console input:disabled,.console select:disabled,.view-preset:disabled { opacity:.43;cursor:not-allowed; }
+.keyboard-guide { grid-template-columns:1fr 1.25fr; }
+.keyboard-guide span { white-space:nowrap; }
+.completion-returning { color:#757c70; }
+.driver-hint { position:absolute;left:20px;top:18px;z-index:3;display:flex;flex-direction:column;gap:5px;max-width:calc(100% - 175px);padding:9px 12px;border:1px solid #cbd2c3;border-radius:3px;background:#f9fbf4df;color:#45513e;pointer-events:none; }
+.driver-hint strong { font-size:11px;font-weight:650;letter-spacing:.06em; }
+.driver-hint span { font-size:9px;line-height:1.5;color:#68745f; }
+.is-cockpit .stage-copy { display:none; }
+.is-cockpit .view-tools { top:18px;right:20px; }
+.is-cockpit .scene-bottom { bottom:9px;left:20px;right:20px; }
+.is-cockpit .view-presets { margin-bottom:7px; }
+.is-cockpit .telemetry { display:flex;align-items:center;justify-content:center;gap:18px;width:max-content;max-width:100%;margin:0 auto;padding:6px 13px;background:#f9fbf4df; }
+.is-cockpit .telemetry-speed { display:flex;align-items:baseline;gap:5px; }
+.is-cockpit .telemetry-speed>.telemetry-label,.is-cockpit .rpm-track,.is-cockpit .rpm-ticks,.is-cockpit .telemetry-note { display:none; }
+.is-cockpit #speed-value,.is-cockpit #gear-value { font-size:18px;line-height:1;margin:0; }
+.is-cockpit .telemetry-gear { flex-direction:row;align-items:center;gap:7px;align-self:center;border:0; }
+.is-cockpit .telemetry-rpm { padding:0; }
+.is-cockpit .rpm-reading { margin:0;gap:7px; }
+.is-cockpit #rpm-value { font-size:12px; }
+.is-cockpit .telemetry-label { font-size:7px; }
+.is-cockpit .canvas-hint { margin-top:5px;font-size:8px;text-shadow:0 1px 2px #fff9; }
+.is-cockpit .toast { top:90px;bottom:auto; }
+.is-night .driver-hint { background:#20272ce8;border-color:#59605c;color:#eff2e9; }
+.is-night .driver-hint span { color:#b8c3b5; }
+@media (max-width:760px) {
+  .driver-hint { top:12px;left:12px;max-width:calc(100% - 145px);padding:7px 9px; }
+  .driver-hint span { font-size:8px; }
+  .is-cockpit .view-tools { top:12px;right:12px;gap:4px; }
+  .is-cockpit .scene-bottom { left:12px;right:12px;bottom:8px; }
+  .is-cockpit .telemetry { gap:12px;padding:6px 10px; }
+  .is-cockpit .toast { top:82px;bottom:auto; }
+}

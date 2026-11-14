@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f1f2ed" />
+    <meta name="description" content="探索 Porsche 911 RSR 的每个部件。启动引擎、换挡、打开车身，或完成随机编号装配。" />
+    <title>911 RSR · Interactive Workshop</title>
+  </head>
+  <body>
+    <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <symbol id="i-power" viewBox="0 0 24 24"><path d="M12 3v9M6.5 5.7a8.5 8.5 0 1 0 11 0"/></symbol>
+      <symbol id="i-sound" viewBox="0 0 24 24"><path d="m11 4-6 5H2v6h3l6 5V4Zm4 4a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+      <symbol id="i-lamp" viewBox="0 0 24 24"><path d="M12 5C6 5 3 8 3 12s3 7 9 7V5Zm4 2h5m-5 5h6m-6 5h5"/></symbol>
+      <symbol id="i-tail" viewBox="0 0 24 24"><path d="M5 8h14v9H5zM7 8l1-4h8l1 4M3 12h5m8 0h5M8 20v-3m8 3v-3"/></symbol>
+      <symbol id="i-hazard" viewBox="0 0 24 24"><path d="M12 3 2 21h20L12 3Zm0 6v5m0 3v.5"/></symbol>
+      <symbol id="i-night" viewBox="0 0 24 24"><path d="M20 15A9 9 0 0 1 9 4a9 9 0 1 0 11 11Z"/></symbol>
+      <symbol id="i-door" viewBox="0 0 24 24"><path d="m5 20 1-12 5-5h8v17H5Zm3-10h9V5h-5l-4 5Zm7 4h2"/></symbol>
+      <symbol id="i-hood" viewBox="0 0 24 24"><path d="m3 14 4-6h10l4 6v6H3v-6Zm0 0h18M6 18h2m8 0h2M6 8l3-5h8"/></symbol>
+      <symbol id="i-roof" viewBox="0 0 24 24"><path d="m4 13 4-5h8l4 5M4 17h16v4H4zM12 2v8m-3-5 3-3 3 3"/></symbol>
+      <symbol id="i-rotate" viewBox="0 0 24 24"><path d="M20 8a9 9 0 1 0 1 8M20 3v6h-6"/></symbol>
+      <symbol id="i-focus" viewBox="0 0 24 24"><path d="M3 8V3h5m8 0h5v5m0 8v5h-5M8 21H3v-5"/><circle cx="12" cy="12" r="3"/></symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24"><path d="M3 7h5l2-3h4l2 3h5v14H3V7Z"/><circle cx="12" cy="14" r="4"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+      <symbol id="i-shuffle" viewBox="0 0 24 24"><path d="M3 6h3l12 12h3m-5-3 3 3-3 3M3 18h3l12-12h3m-5-3 3 3-3 3"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 4 12 8-12 8V4Z"/></symbol>
+      <symbol id="i-parts" viewBox="0 0 24 24"><path d="m12 2 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+    </svg>
+
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand" aria-label="RSR 工坊">
+          <span class="brand-stripes" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="brand-name">RSR<span class="brand-divider">/</span>WORKSHOP</span>
+          <span class="edition">INTERACTIVE EDITION</span>
+        </div>
+        <div class="topbar-right">
+          <span class="system-status"><i class="status-dot" aria-hidden="true"></i><span id="engine-status" role="status">引擎未启动</span></span>
+          <span class="header-number">NO. 911</span>
+        </div>
+      </header>
+
+      <main class="workbench">
+        <section class="stage" aria-label="三维模型工作区">
+          <div id="viewport"></div>
+          <div class="stage-copy">
+            <p class="eyebrow">PORSCHE · MOTORSPORT</p>
+            <h1>911 <span>RSR</span><sup>®</sup></h1>
+            <p class="model-caption">每一处构造，都值得探索。</p>
+            <div class="model-specs">
+              <span><strong id="part-count">—</strong> 个独立部件</span>
+              <i aria-hidden="true"></i>
+              <span>水平对置六缸</span>
+            </div>
+          </div>
+
+          <div class="view-tools" aria-label="视图工具">
+            <button id="rotate-toggle" class="icon-button" aria-label="自动旋转" aria-pressed="false" title="自动旋转"><svg><use href="#i-rotate"/></svg></button>
+            <button id="reset-view" class="icon-button" aria-label="重置视角" title="重置视角"><svg><use href="#i-focus"/></svg></button>
+            <button id="screenshot-btn" class="icon-button" aria-label="保存当前视图" title="保存当前视图"><svg><use href="#i-camera"/></svg></button>
+          </div>
+          <div id="driver-hint" class="driver-hint" hidden>
+            <strong>驾驶第一视角</strong><span>I 启停 · E 升挡 · 按住 W 油门</span>
+          </div>
+
+          <div id="loading-overlay" class="loading-overlay" role="status" aria-live="polite">
+            <div class="loading-emblem" aria-hidden="true"><span>911</span><i></i></div>
+            <p id="loading-text">正在准备你的 911 RSR</p>
+            <div class="loading-track"><div id="loading-bar"></div></div>
+            <span class="loading-footnote">构造、材质与细节，即将就位</span>
+          </div>
+
+          <div id="selected-card" class="selected-card" hidden>
+            <div class="selected-heading">
+              <span class="eyebrow">SELECTED COMPONENT</span>
+              <button id="selected-close" class="icon-button compact" aria-label="关闭零件详情"><svg><use href="#i-close"/></svg></button>
+            </div>
+            <p id="selected-name">零件名称</p>
+            <div class="selected-meta"><span id="selected-id">—</span><span id="selected-group">—</span></div>
+          </div>
+
+          <div class="scene-bottom">
+            <div class="view-presets" aria-label="预设视角">
+              <button id="view-front" class="view-preset is-active" aria-pressed="true" aria-current="true">外部视角</button>
+              <button id="view-rear" class="view-preset">后视角</button>
+              <button id="view-interior" class="view-preset" aria-pressed="false">驾驶视角</button>
+            </div>
+            <div class="telemetry" aria-label="车辆实时仪表">
+              <div class="telemetry-speed">
+                <span class="telemetry-label">SPEED</span>
+                <strong id="speed-value">000</strong><span class="telemetry-unit">km/h</span>
+              </div>
+              <div class="telemetry-gear"><span class="telemetry-label">GEAR</span><strong id="gear-value">N</strong></div>
+              <div class="telemetry-rpm">
+                <div class="rpm-reading"><span class="telemetry-label">ENGINE</span><span><strong id="rpm-value">0</strong> <span class="telemetry-unit">rpm</span></span></div>
+                <div class="rpm-track" aria-hidden="true"><div id="rpm-fill"></div></div>
+                <div class="rpm-ticks" aria-hidden="true"><span>0</span><span>2</span><span>4</span><span>6</span><span>8 ×1000</span></div>
+              </div>
+              <div class="telemetry-note"><span class="live-dot"></span><span>原地运转<br><small>机械动态演示</small></span></div>
+            </div>
+            <div class="canvas-hint"><span id="canvas-hint-text">拖动旋转 · 滚轮缩放 · 点击查看零件</span><span class="performance"><b id="fps-value">—</b> FPS</span></div>
+          </div>
+          <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+        </section>
+
+        <aside class="console" aria-label="车辆控制台">
+          <div class="console-heading"><span class="eyebrow">CONTROL ROOM</span><span class="console-index">01—03</span></div>
+          <div class="tabs" role="tablist" aria-label="控制类别">
+            <button id="tab-drive" role="tab" class="tab is-active" data-tab="drive" aria-selected="true" aria-controls="panel-drive"><span>01</span>驾驶</button>
+            <button id="tab-body" role="tab" class="tab" data-tab="body" aria-selected="false" aria-controls="panel-body"><span>02</span>车身</button>
+            <button id="tab-build" role="tab" class="tab" data-tab="build" aria-selected="false" aria-controls="panel-build"><span>03</span>拆解</button>
+          </div>
+
+          <div class="console-content">
+            <p id="workshop-status" class="controls-lock-note" role="status" aria-live="polite" hidden></p>
+            <section id="panel-drive" class="control-panel" data-panel="drive" role="tabpanel" aria-labelledby="tab-drive">
+              <div class="panel-intro"><h2>唤醒六缸引擎</h2><p>从怠速的低鸣，到全速的声浪。</p></div>
+              <button id="engine-toggle" class="engine-button" aria-pressed="false"><span class="power-glyph"><svg><use href="#i-power"/></svg></span><span>启动引擎</span><svg class="button-arrow"><use href="#i-arrow"/></svg></button>
+              <div class="control-block">
+                <div class="field-label"><label for="gear-select">变速挡位</label><span class="micro-label">TRANSMISSION</span></div>
+                <div class="gear-field"><select id="gear-select" aria-label="变速挡位"><option value="R">R · 倒挡</option><option value="N" selected>N · 空挡</option><option value="1">1 · 一挡</option><option value="2">2 · 二挡</option><option value="3">3 · 三挡</option><option value="4">4 · 四挡</option><option value="5">5 · 五挡</option><option value="6">6 · 六挡</option></select><span aria-hidden="true">⌄</span></div>
+                <p class="field-help">启动后入挡，踩下油门观察轮速。</p>
+              </div>
+              <div class="control-block">
+                <div class="field-label"><label for="throttle">油门</label><span class="micro-label">THROTTLE</span></div>
+                <input id="throttle" type="range" min="0" max="100" step="1" value="0" aria-label="油门百分比" />
+                <div class="range-ends"><span>怠速</span><span>全油门</span></div>
+                <button id="brake-toggle" class="brake-button" aria-pressed="false"><span class="brake-icon" aria-hidden="true">Ⅱ</span> 制动</button>
+              </div>
+              <div class="control-block sound-block">
+                <div class="field-label"><span>引擎声浪</span><button id="sound-toggle" class="text-toggle" aria-pressed="true"><svg><use href="#i-sound"/></svg><span id="audio-label">声音开启</span></button></div>
+                <label class="sr-only" for="volume">音量</label><input id="volume" type="range" min="0" max="100" step="1" value="45" aria-label="音量" />
+                <div class="range-ends"><span>静音</span><span>音量</span></div>
+              </div>
+              <div class="panel-note"><i class="note-rule"></i><p>切换挡位，听见转速的变化。<br>车辆保持原位，车轮随动力转动。</p></div>
+              <div class="keyboard-guide" aria-label="键盘控制">
+                <span><kbd>I</kbd> 启停</span><span><kbd>Q / E</kbd> 降 / 升挡</span>
+                <span><kbd>W / ↑</kbd> 按住油门</span><span><kbd>S / ↓ / 空格</kbd> 制动</span>
+                <span><kbd>N</kbd> 空挡</span><span><kbd>R</kbd> 倒挡</span>
+                <span><kbd>Home</kbd> 重置视角</span><span><kbd>Esc</kbd> 取消选择</span>
+              </div>
+            </section>
+
+            <section id="panel-body" class="control-panel" data-panel="body" role="tabpanel" aria-labelledby="tab-body" hidden>
+              <div class="panel-intro"><h2>内外之间</h2><p>打开车身，看看细节如何相连。</p></div>
+              <div class="control-block first-block">
+                <div class="field-label"><span>灯光</span><span class="micro-label">LIGHTING</span></div>
+                <div class="toggle-grid">
+                  <button id="headlights-toggle" class="control-tile" aria-pressed="false"><svg><use href="#i-lamp"/></svg><span>前大灯</span><i class="toggle-led"></i></button>
+                  <button id="taillights-toggle" class="control-tile" aria-pressed="false"><svg><use href="#i-tail"/></svg><span>尾灯</span><i class="toggle-led"></i></button>
+                  <button id="hazards-toggle" class="control-tile" aria-pressed="false"><svg><use href="#i-hazard"/></svg><span>双闪</span><i class="toggle-led"></i></button>
+                  <button id="night-toggle" class="control-tile" aria-pressed="false"><svg><use href="#i-night"/></svg><span>夜间展台</span><i class="toggle-led"></i></button>
+                </div>
+              </div>
+              <div class="control-block">
+                <div class="field-label"><span>开合</span><span class="micro-label">ACCESS</span></div>
+                <button id="left-door-toggle" class="switch-control" aria-pressed="false"><svg><use href="#i-door"/></svg><span>左侧车门</span><i class="switch-track"></i></button>
+                <button id="right-door-toggle" class="switch-control" aria-pressed="false"><svg class="mirror-icon"><use href="#i-door"/></svg><span>右侧车门</span><i class="switch-track"></i></button>
+                <button id="hood-toggle" class="switch-control" aria-pressed="false"><svg><use href="#i-hood"/></svg><span>前舱盖</span><i class="switch-track"></i></button>
+                <button id="rear-hood-toggle" class="switch-control" aria-pressed="false"><svg><use href="#i-hood"/></svg><span>后舱盖</span><i class="switch-track"></i></button>
+                <button id="roof-toggle" class="switch-control" aria-pressed="false"><svg><use href="#i-roof"/></svg><span>抬起车顶</span><i class="switch-track"></i></button>
+              </div>
+              <div class="panel-note"><i class="note-rule"></i><p>抬起车顶，查看双皮质座椅、<br>电子仪表与完整转向机构。</p></div>
+            </section>
+
+            <section id="panel-build" class="control-panel" data-panel="build" role="tabpanel" aria-labelledby="tab-build" hidden>
+              <div class="panel-intro"><h2>从整体，到每一件</h2><p>层层展开，再亲手把它装回。</p></div>
+              <div class="control-block first-block">
+                <div class="field-label"><label for="explode-slider">拆解程度</label><span id="explode-label" class="accent-text">完整车型</span></div>
+                <input id="explode-slider" type="range" min="0" max="3" step="0.01" value="0" aria-label="拆解程度" />
+                <div class="stage-stops">
+                  <button id="explode-assembled" data-explode="0" class="is-active" aria-pressed="true"><i></i>整车</button>
+                  <button id="explode-body" data-explode="1" aria-pressed="false"><i></i>车身</button>
+                  <button id="explode-systems" data-explode="2" aria-pressed="false"><i></i>总成</button>
+                  <button id="explode-all" data-explode="3" aria-pressed="false"><i></i>全拆</button>
+                </div>
+              </div>
+              <div class="challenge-invite">
+                <div class="invite-icon"><svg><use href="#i-parts"/></svg></div>
+                <h3>随机装配挑战</h3>
+                <p>全拆之后，为零件随机编号。<br>找到目标，逐件装回你的 911。</p>
+                <button id="challenge-start" class="primary-button">开始随机装配<svg><use href="#i-arrow"/></svg></button>
+              </div>
+              <div id="challenge-panel" class="challenge-panel" hidden>
+                <div class="challenge-topline"><span class="eyebrow">ASSEMBLY IN PROGRESS</span><span id="challenge-progress">0 / 0</span></div>
+                <div class="target-piece"><span class="target-label">下一件</span><strong id="challenge-number">—</strong><span id="challenge-name">等待分配零件</span></div>
+                <button id="challenge-next" class="secondary-button"><svg><use href="#i-focus"/></svg>定位这一件</button>
+                <label class="field-label search-label" for="challenge-search">输入零件编号</label>
+                <div class="assembly-input"><input id="challenge-search" type="number" min="1" step="1" inputmode="numeric" autocomplete="off" placeholder="例如 128" aria-label="零件编号" /><button id="challenge-submit" aria-label="按编号装回"><svg><use href="#i-check"/></svg></button></div>
+                <p class="field-help">输入编号装回，或直接点击模型中的零件。</p>
+                <button id="challenge-auto" class="secondary-button" aria-pressed="false"><svg><use href="#i-play"/></svg>自动回装</button>
+                <div class="challenge-actions"><button id="challenge-shuffle" class="quiet-button"><svg><use href="#i-shuffle"/></svg>重新随机</button><button id="challenge-cancel" class="quiet-button">结束挑战</button></div>
+              </div>
+            </section>
+          </div>
+          <div class="console-footer"><span>BUILT TO BE TAKEN APART.</span><i aria-hidden="true"></i></div>
+        </aside>
+      </main>
+      <footer class="app-footer"><span>911 RSR / THE MECHANICAL COLLECTION</span><span>探索 · 驾驶 · 组装</span></footer>
+    </div>
+    <noscript><div class="noscript">请开启 JavaScript，以加载三维模型和交互控制。</div></noscript>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

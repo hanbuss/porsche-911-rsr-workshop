@@ -1,0 +1,131 @@
+{
+  "provenance": "Blender original submodel_path inventory, independently extracted before repairing runtime motion",
+  "sourceSubmodel": "42096 - main.ldr/42096 - porsche.ldr/42096 - roof.ldr/42096 - roof2.ldr/42096 - roof3.ldr",
+  "sourceMpdSha256": "6cf2873bdd73f7bb1db6b73da220bd48c9d7ba5db6891cd2811b567420e95793",
+  "sourceLines": [
+    32295,
+    32328
+  ],
+  "parts": [
+    {
+      "id": "P1496",
+      "partId": "62462",
+      "description": "Technic Pin Joiner Round with Slot"
+    },
+    {
+      "id": "P1497",
+      "partId": "2780",
+      "description": "Technic Pin with Friction and Slots"
+    },
+    {
+      "id": "P1498",
+      "partId": "6558",
+      "description": "Technic Pin Long with Friction and Slot"
+    },
+    {
+      "id": "P1499",
+      "partId": "15100",
+      "description": "Technic Pin with Friction with Perpendicular Pin Hole Type 1"
+    },
+    {
+      "id": "P1500",
+      "partId": "62462",
+      "description": "Technic Pin Joiner Round with Slot"
+    },
+    {
+      "id": "P1501",
+      "partId": "6558",
+      "description": "Technic Pin Long with Friction and Slot"
+    },
+    {
+      "id": "P1502",
+      "partId": "18654",
+      "description": "Technic Beam  1"
+    },
+    {
+      "id": "P1503",
+      "partId": "62462",
+      "description": "Technic Pin Joiner Round with Slot"
+    },
+    {
+      "id": "P1504",
+      "partId": "6558",
+      "description": "Technic Pin Long with Friction and Slot"
+    },
+    {
+      "id": "P1505",
+      "partId": "15100",
+      "description": "Technic Pin with Friction with Perpendicular Pin Hole Type 1"
+    },
+    {
+      "id": "P1506",
+      "partId": "62462",
+      "description": "Technic Pin Joiner Round with Slot"
+    },
+    {
+      "id": "P1507",
+      "partId": "64782",
+      "description": "Technic Panel  5 x 11"
+    },
+    {
+      "id": "P1508",
+      "partId": "6558",
+      "description": "Technic Pin Long with Friction and Slot"
+    },
+    {
+      "id": "P1509",
+      "partId": "6558",
+      "description": "Technic Pin Long with Friction and Slot"
+    },
+    {
+      "id": "P1510",
+      "partId": "2780",
+      "description": "Technic Pin with Friction and Slots"
+    },
+    {
+      "id": "P1511",
+      "partId": "2780",
+      "description": "Technic Pin with Friction and Slots"
+    },
+    {
+      "id": "P1512",
+      "partId": "2780",
+      "description": "Technic Pin with Friction and Slots"
+    },
+    {
+      "id": "P1513",
+      "partId": "2780",
+      "description": "Technic Pin with Friction and Slots"
+    },
+    {
+      "id": "P1514",
+      "partId": "32523",
+      "description": "Technic Beam  3"
+    },
+    {
+      "id": "P1515",
+      "partId": "32523",
+      "description": "Technic Beam  3"
+    },
+    {
+      "id": "P1516",
+      "partId": "32523",
+      "description": "Technic Beam  3"
+    },
+    {
+      "id": "P1517",
+      "partId": "15458",
+      "description": "Technic Panel  3 x 11"
+    },
+    {
+      "id": "P1518",
+      "partId": "6628",
+      "description": "Technic Pin Towball with Friction"
+    },
+    {
+      "id": "P1519",
+      "partId": "6628",
+      "description": "Technic Pin Towball with Friction"
+    }
+  ]
+}
